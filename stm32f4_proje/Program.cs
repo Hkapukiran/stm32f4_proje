@@ -14,6 +14,7 @@ namespace stm32f4_proje
         [STAThread]
         static void Main()
         {
+            //baslangic
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());
