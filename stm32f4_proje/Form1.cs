@@ -39,6 +39,22 @@ namespace stm32f4_proje
             comboBox_baudrate.Items.Add("57600");
             comboBox_baudrate.Items.Add("115200");
 
+            comboBox_baudrate.SelectedIndex = 0;
+        }
+
+        private void button_seriport_ayar_Click(object sender, EventArgs e)
+        {
+            serialPort1.PortName = ComboBox_seri_port_isimleri.SelectedItem.ToString();
+            serialPort1.BaudRate = Convert.ToInt32(comboBox_baudrate.SelectedItem.ToString());
+
+            try
+            {
+                serialPort1.Open();
+            }
+            catch (UnauthorizedAccessException)
+            {
+                MessageBox.Show("Seçtiginiz Port Bir Başkası Tarafından Kullanımda","Bilgilendirme Penceresi",MessageBoxButtons.OK,MessageBoxIcon.Information);
+            }
         }
     }
 }
