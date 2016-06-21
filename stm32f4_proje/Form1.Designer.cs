@@ -33,11 +33,16 @@
             this.ComboBox_seri_port_isimleri = new System.Windows.Forms.ComboBox();
             this.comboBox_baudrate = new System.Windows.Forms.ComboBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.button_seriport_ayar = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.button_seriport_ayar = new System.Windows.Forms.Button();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // serialPort1
+            // 
+            this.serialPort1.DataReceived += new System.IO.Ports.SerialDataReceivedEventHandler(this.serialPort1_DataReceived);
             // 
             // ComboBox_seri_port_isimleri
             // 
@@ -69,15 +74,14 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Seri Port Ayarları";
             // 
-            // button_seriport_ayar
+            // label2
             // 
-            this.button_seriport_ayar.Location = new System.Drawing.Point(64, 124);
-            this.button_seriport_ayar.Name = "button_seriport_ayar";
-            this.button_seriport_ayar.Size = new System.Drawing.Size(75, 23);
-            this.button_seriport_ayar.TabIndex = 2;
-            this.button_seriport_ayar.Text = "AYARLA";
-            this.button_seriport_ayar.UseVisualStyleBackColor = true;
-            this.button_seriport_ayar.Click += new System.EventHandler(this.button_seriport_ayar_Click);
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(7, 81);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(50, 13);
+            this.label2.TabIndex = 4;
+            this.label2.Text = "Baudrate";
             // 
             // label1
             // 
@@ -88,14 +92,19 @@
             this.label1.TabIndex = 3;
             this.label1.Text = "Port Seçimi";
             // 
-            // label2
+            // button_seriport_ayar
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(7, 81);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(50, 13);
-            this.label2.TabIndex = 4;
-            this.label2.Text = "Baudrate";
+            this.button_seriport_ayar.Location = new System.Drawing.Point(64, 124);
+            this.button_seriport_ayar.Name = "button_seriport_ayar";
+            this.button_seriport_ayar.Size = new System.Drawing.Size(75, 23);
+            this.button_seriport_ayar.TabIndex = 2;
+            this.button_seriport_ayar.Text = "AYARLA";
+            this.button_seriport_ayar.UseVisualStyleBackColor = true;
+            this.button_seriport_ayar.Click += new System.EventHandler(this.button_seriport_ayar_Click);
+            // 
+            // timer1
+            // 
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // Form1
             // 
@@ -121,6 +130,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button button_seriport_ayar;
+        private System.Windows.Forms.Timer timer1;
     }
 }
 

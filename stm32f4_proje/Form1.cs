@@ -13,6 +13,9 @@ namespace stm32f4_proje
 {
     public partial class Form1 : Form
     {
+
+        Buffer stm32f4_icin_cevrel_buffer = new Buffer();
+
         public Form1()
         {
             InitializeComponent();
@@ -20,6 +23,7 @@ namespace stm32f4_proje
 
         private void Form1_Load(object sender, EventArgs e)
         {
+
             string[] gorulen_portlar;
             gorulen_portlar = SerialPort.GetPortNames();
             
@@ -40,6 +44,10 @@ namespace stm32f4_proje
             comboBox_baudrate.Items.Add("115200");
 
             comboBox_baudrate.SelectedIndex = 0;
+
+            timer1.Interval = 2000;
+            timer1.Start();
+            
         }
 
         private void button_seriport_ayar_Click(object sender, EventArgs e)
@@ -55,6 +63,24 @@ namespace stm32f4_proje
             {
                 MessageBox.Show("Seçtiginiz Port Bir Başkası Tarafından Kullanımda","Bilgilendirme Penceresi",MessageBoxButtons.OK,MessageBoxIcon.Information);
             }
+        }
+
+        private void serialPort1_DataReceived(object sender, SerialDataReceivedEventArgs e)
+        {
+            int okunan_bayt_sayisi = serialPort1.BytesToRead;
+            char[] array = new char[okunan_bayt_sayisi];
+            serialPort1.Read(array, 0, okunan_bayt_sayisi);
+            stm32f4_icin_cevrel_buffer.verileri_cevrel_buffera_ekle(array, okunan_bayt_sayisi);
+            
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            char[] okunan_veriler = new char[1024];
+            int okunan_bayt_sayisi;
+
+            okunan_bayt_sayisi =stm32f4_icin_cevrel_buffer.okunan_bayt(ref okunan_veriler);
+
         }
     }
 }
