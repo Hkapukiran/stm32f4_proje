@@ -18,6 +18,10 @@ namespace stm32f4_proje
             int sayac = 0;
             for (sayac = 0; sayac < okunan_bayt_sayisi; sayac++)
             {
+                if (bas >= 1024)
+                {
+                    bas = 0;
+                }
                 cevrel_buffer[bas] = okunan_veriler_dizisi[sayac];
                 bas++;
             }
@@ -36,6 +40,24 @@ namespace stm32f4_proje
                     okunan_veriler[i] = cevrel_buffer[son];
                     son++;
                 }
+            }
+
+            if (sonuc < 0)
+            {
+                sonuc = 1024 - son;
+                sonuc = sonuc + bas;
+
+                for (int i = 0; i < sonuc; i++)
+                {
+                    if (son > 1023)
+                    {
+                        son = 0;
+                    }
+                    okunan_veriler[i] = cevrel_buffer[son];
+                    son++;
+                }
+
+
             }
 
             return sonuc;
